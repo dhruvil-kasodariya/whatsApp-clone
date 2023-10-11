@@ -31,16 +31,15 @@ const [{},dispatch] =useStateProvider();
             name,
             email,
             profileImage,
-            status:""
           }
         })
         router.push("/onboarding")
       }else{
-     
-        const {id,name,email,profilePicture,status} =data.data
+
+        const {_id,name,email,profilePicture,status} =data.data
         dispatch({
           type:reducerCases.SET_USER_INFO,userInfo:{
-            id,
+            _id,
             name,
             email,
             profileImage:profilePicture,

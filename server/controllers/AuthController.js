@@ -38,3 +38,25 @@ export const onboardUser =async(req,res,next)=>{
       next(error)
    }
 }
+
+export const getAllUser=async(req,res,next)=>{
+   try {
+      const users = await User
+      .find({})
+      .sort({ name: 1 })
+
+    const usersGroupedByInitialLetter = {};
+
+    users && users.forEach((user) => {
+      
+      const initialLetter = user?.name.charAt(0).toUpperCase();
+      if (!usersGroupedByInitialLetter[initialLetter]) {
+        usersGroupedByInitialLetter[initialLetter] = [];
+      }
+      usersGroupedByInitialLetter[initialLetter].push(user);
+    });
+    return res.status(200).send({ users: usersGroupedByInitialLetter });
+   } catch (error) {
+      console.log(error)
+   }
+}
