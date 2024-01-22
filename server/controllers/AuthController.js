@@ -57,6 +57,6 @@ export const getAllUser=async(req,res,next)=>{
     });
     return res.status(200).send({ users: usersGroupedByInitialLetter });
    } catch (error) {
-      console.log(error)
+      console.error(error)
    }
 }
